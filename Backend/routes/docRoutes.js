@@ -10,8 +10,6 @@ const PdfDetailsSchema = require('../models/doc');
 
 // Google Drive API setup
 const path = require('path');
-
-
 // Resolve the key file path
 const KEYFILE_PATH = path.resolve(process.env.KEYFILE_PATH || ''); // Default to an empty string if undefined
 console.log('Resolved Keyfile Path:', path.resolve(process.env.KEYFILE_PATH || ''));
