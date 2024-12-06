@@ -82,6 +82,7 @@ const FormSubmission = ({ setActivesection }) => {
             }
           }
         );
+        console.log(docResponse);
         setIsLoading(false);
         if (docResponse.data.status === "ok") {
           toast.success("Fund Raised Successfully")
@@ -105,6 +106,7 @@ const FormSubmission = ({ setActivesection }) => {
       setFile(null);
       setActivesection('');
     } catch (error) {
+      console.log(error);
       toast.error('Fund Raise Failed , try again later')
 
     }
