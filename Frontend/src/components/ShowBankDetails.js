@@ -12,7 +12,7 @@ const ShowBankDetails = ({ setIsDoc }) => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await axios.get(`https://mernfr.onrender.com/ud/user-details/${userId}`, {
+        const response = await axios.get(`https://funraiser.onrender.com/ud/user-details/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

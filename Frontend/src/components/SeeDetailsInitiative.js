@@ -18,7 +18,7 @@ const SeeDetailsInitiative = ({ setActive }) => {
     const fetchInitiativeDetails = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`https://mernfr.onrender.com/init/getinit/${initiativeId}`, {
+        const response = await axios.get(`https://funraiser.onrender.com/init/getinit/${initiativeId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

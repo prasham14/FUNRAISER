@@ -56,7 +56,7 @@ const FormSubmission = ({ setActivesection }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const fundResponse = await axios.post('https://mernfr.onrender.com/fund/raise', formData, {
+      const fundResponse = await axios.post('https://funraiser.onrender.com/fund/raise', formData, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -73,7 +73,7 @@ const FormSubmission = ({ setActivesection }) => {
 
 
         const docResponse = await axios.post(
-          `https://mernfr.onrender.com/doc/upload-files/${formData.user_id}`,
+          `https://funraiser.onrender.com/doc/upload-files/${formData.user_id}`,
           documentData,
           {
             headers: {

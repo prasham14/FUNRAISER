@@ -39,7 +39,7 @@ const MyFunds = () => {
     }
 
     try {
-      await axios.delete(`https://mernfr.onrender.com/fund/deleteFund/${fundId}`, {
+      await axios.delete(`https://funraiser.onrender.com/fund/deleteFund/${fundId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -58,7 +58,7 @@ const MyFunds = () => {
     }
 
     try {
-      await axios.delete(`https://mernfr.onrender.com/fund/deleteDoc/${fundId}`, {
+      await axios.delete(`https://funraiser.onrender.com/fund/deleteDoc/${fundId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -77,7 +77,7 @@ const MyFunds = () => {
     const fetchFunds = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get(`https://mernfr.onrender.com/fund/getFunds/${userId}`, {
+        const response = await axios.get(`https://funraiser.onrender.com/fund/getFunds/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -115,7 +115,7 @@ const MyFunds = () => {
 
   const handleEditSubmit = async () => {
     try {
-      await axios.put(`https://mernfr.onrender.com/fund/editFund/${editInitiativeId}`, editData, {
+      await axios.put(`https://funraiser.onrender.com/fund/editFund/${editInitiativeId}`, editData, {
         headers: {
           Authorization: `Bearer ${token}`
         }

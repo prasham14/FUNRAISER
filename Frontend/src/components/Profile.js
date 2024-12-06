@@ -29,7 +29,7 @@ function Profile({ setIsLoggedIn, setActivesection }) {
       return;
     }
 
-    axios.get(`https://mernfr.onrender.com/getUser/${id}`, { withCredentials: true })
+    axios.get(`https://funraiser.onrender.com/getUser/${id}`, { withCredentials: true })
       .then((response) => {
         const userData = response.data.response;
         if (userData) {
@@ -54,7 +54,7 @@ function Profile({ setIsLoggedIn, setActivesection }) {
   const changeNameHandler = async () => {
 
     try {
-      const res = await axios.put(`https://mernfr.onrender.com/UpdateName/${userId}`, { username: newData.username }, { withCredentials: true });
+      const res = await axios.put(`https://funraiser.onrender.com/UpdateName/${userId}`, { username: newData.username }, { withCredentials: true });
       setName(newData.username);
       setIsChange(false);
       toast.success("Username Updated")
@@ -69,7 +69,7 @@ function Profile({ setIsLoggedIn, setActivesection }) {
   const changeEmailHandler = () => {
     let OTP = Math.floor(1000 + Math.random() * 9000);
     localStorage.setItem('otp', OTP);
-    axios.patch(`https://mernfr.onrender.com/user/EmailVerify/${newData.email}/${OTP}`, { withCredentials: true })
+    axios.patch(`https://funraiser.onrender.com/user/EmailVerify/${newData.email}/${OTP}`, { withCredentials: true })
       .then(() => {
         setIsChangeEmail(false);
         setIsEmailChange(true);
@@ -90,7 +90,7 @@ function Profile({ setIsLoggedIn, setActivesection }) {
     if (otpValue === storedOtp) {
       toast.success("Email Verified Successfully!");
       setIsEmailChange(false);
-      axios.patch(`https://mernfr.onrender.com/user/editEmail/${email}`, { email: newData.email }, { withCredentials: true }).then(() => {
+      axios.patch(`https://funraiser.onrender.com/user/editEmail/${email}`, { email: newData.email }, { withCredentials: true }).then(() => {
         setEmail(newData.email);
       });
     } else {

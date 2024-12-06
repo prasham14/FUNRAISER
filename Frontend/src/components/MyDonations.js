@@ -23,7 +23,7 @@ const MyDonations = () => {
 
   const fetchFundDetails = async (fundId) => {
     try {
-      const response = await axios.get(`https://mernfr.onrender.com/fund/getFund/${fundId}`, {
+      const response = await axios.get(`https://funraiser.onrender.com/fund/getFund/${fundId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -39,7 +39,7 @@ const MyDonations = () => {
     if (id && token) {
       const fetchDonations = async () => {
         try {
-          const response = await axios.get(`https://mernfr.onrender.com/payment/getDonations/${id}`, {
+          const response = await axios.get(`https://funraiser.onrender.com/payment/getDonations/${id}`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },

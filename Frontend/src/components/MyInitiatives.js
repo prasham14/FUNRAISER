@@ -31,7 +31,7 @@ const MyInitiatives = () => {
     const fetchInitiatives = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get(`https://mernfr.onrender.com/init/getInitiative/${emailId}`, {
+        const response = await axios.get(`https://funraiser.onrender.com/init/getInitiative/${emailId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -70,7 +70,7 @@ const MyInitiatives = () => {
 
   const handleEditSubmit = async () => {
     try {
-      await axios.put(`https://mernfr.onrender.com/init/editInitiative/${editInitiativeId}`, editData, {
+      await axios.put(`https://funraiser.onrender.com/init/editInitiative/${editInitiativeId}`, editData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -93,7 +93,7 @@ const MyInitiatives = () => {
     if (!window.confirm('Are you sure you want to delete this initiative?')) return;
 
     try {
-      await axios.delete(`https://mernfr.onrender.com/init/deleteInitiative/${initiativeId}`, {
+      await axios.delete(`https://funraiser.onrender.com/init/deleteInitiative/${initiativeId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

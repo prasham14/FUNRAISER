@@ -16,7 +16,7 @@ const JoinInitiative = ({ initiativeId, setActive }) => {
       }
 
       const response = await axios.post(
-        `https://mernfr.onrender.com/init/join/${initiativeId}`,
+        `https://funraiser.onrender.com/init/join/${initiativeId}`,
         { name, phone },
         {
           headers: {

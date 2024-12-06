@@ -16,7 +16,7 @@ const Others = ({ setActivesection }) => {
     const fetchFunds = async () => {
 
       try {
-        const response = await axios.get('https://mernfr.onrender.com/options/others', {
+        const response = await axios.get('https://funraiser.onrender.com/options/others', {
           headers: {
             Authorization: `Bearer ${token}`,
           },

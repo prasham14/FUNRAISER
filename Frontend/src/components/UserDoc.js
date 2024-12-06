@@ -14,7 +14,7 @@ const Documents = () => {
     const fetchDocuments = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`https://mernfr.onrender.com/doc/get-user-files/${fundId}`,
+        const response = await axios.get(`https://funraiser.onrender.com/doc/get-user-files/${fundId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

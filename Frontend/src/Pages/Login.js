@@ -25,7 +25,7 @@ const Login = () => {
     e.preventDefault();
     try {
       setIsLoading(true);
-      const response = await axios.post('https://mernfr.onrender.com/login', {
+      const response = await axios.post('https://funraiser.onrender.com/login', {
         email,
         password
       }, { withCredentials: true });

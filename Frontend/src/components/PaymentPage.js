@@ -11,7 +11,7 @@ const PaymentComponent = ({ setIsDoc }) => {
 
     try {
       const { data } = await axios.post(
-        'https://mernfr.onrender.com/pay/order',
+        'https://funraiser.onrender.com/pay/order',
         { amount },
         {
           headers: {
@@ -35,7 +35,7 @@ const PaymentComponent = ({ setIsDoc }) => {
             try {
 
               const verifyResponse = await axios.post(
-                'https://mernfr.onrender.com/pay/verify',
+                'https://funraiser.onrender.com/pay/verify',
                 {
                   razorpay_order_id,
                   razorpay_payment_id,

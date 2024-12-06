@@ -16,7 +16,7 @@ const UserDetailsForm = ({ setActivesection }) => {
   const userId = localStorage.getItem("userId");
   useEffect(() => {
     axios
-      .get(`https://mernfr.onrender.com/ud/user-details/${userId}`, {
+      .get(`https://funraiser.onrender.com/ud/user-details/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -45,7 +45,7 @@ const UserDetailsForm = ({ setActivesection }) => {
 
     axios
       .post(
-        "https://mernfr.onrender.com/ud/user-details",
+        "https://funraiser.onrender.com/ud/user-details",
         { userId, ...userDetails },
         {
           headers: {
