@@ -66,7 +66,7 @@ async function uploadToDrive(file, folderId) {
     return response.data;
   } catch (error) {
     console.error('Error uploading to Google Drive:', error);
-    throw new Error('Google Drive upload failed');
+    throw new Error('Google Drive upload failed', KEYFILE_PATH);
   }
 }
 
