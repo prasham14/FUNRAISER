@@ -5,21 +5,32 @@ const multer = require('multer');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
+
 const PdfDetailsSchema = require('../models/doc');
 
 // Google Drive API setup
-const KEYFILE_PATH = process.env.KEYFILE_PATH; // Replace with the path to your service account key file
-const SCOPES = ['https://www.googleapis.com/auth/drive'];
-const GOOGLE_DRIVE_FOLDER_ID = process.env.FOLDER_ID; // Set this in your .env file
+const path = require('path');
 
-// Google Drive API setup
-const auth = new google.auth.GoogleAuth({
-  keyFile: KEYFILE_PATH,
-  scopes: SCOPES,
-});
-const drive = google.drive({ version: 'v3', auth });
+// Resolve the key file path
+const KEYFILE_PATH = path.resolve(process.env.KEYFILE_PATH || ''); // Default to an empty string if undefined
+if (!KEYFILE_PATH || !KEYFILE_PATH.endsWith('apikey.json')) {
+  throw new Error(
+    `Invalid KEYFILE_PATH: Ensure your environment variable is set correctly. Current value: ${KEYFILE_PATH}`
+  );
+}
 
 // Folder ID where PDFs will be stored on Google Drive
+const GOOGLE_DRIVE_FOLDER_ID = process.env.FOLDER_ID; // Set this in your .env file
+if (!GOOGLE_DRIVE_FOLDER_ID) {
+  throw new Error('FOLDER_ID is not set in your environment variables');
+}
+
+// Setup Google Auth and Drive
+const auth = new google.auth.GoogleAuth({
+  keyFile: KEYFILE_PATH,
+  scopes: ['https://www.googleapis.com/auth/drive'],
+});
+const drive = google.drive({ version: 'v3', auth });
 
 // Configure multer for file uploads
 const storage = multer.memoryStorage(); // Store files in memory for processing
@@ -28,30 +39,35 @@ const PdfSchema = mongoose.model('PdfDetails');
 
 // Helper function to upload file to Google Drive
 async function uploadToDrive(file, folderId) {
-  const { originalname, buffer } = file;
+  try {
+    const { originalname, buffer } = file;
 
-  // Convert buffer to a readable stream
-  const stream = new Readable();
-  stream.push(buffer);
-  stream.push(null);
+    // Convert buffer to a readable stream
+    const stream = new Readable();
+    stream.push(buffer);
+    stream.push(null);
 
-  const fileMetadata = {
-    name: originalname, // Original file name
-    parents: [folderId], // Folder ID from environment variable
-  };
+    const fileMetadata = {
+      name: originalname, // Original file name
+      parents: [folderId], // Folder ID from environment variable
+    };
 
-  const media = {
-    mimeType: 'application/pdf',
-    body: stream, // Use the readable stream
-  };
+    const media = {
+      mimeType: 'application/pdf',
+      body: stream, // Use the readable stream
+    };
 
-  const response = await drive.files.create({
-    requestBody: fileMetadata,
-    media: media,
-    fields: 'id, webContentLink, webViewLink',
-  });
+    const response = await drive.files.create({
+      requestBody: fileMetadata,
+      media: media,
+      fields: 'id, webContentLink, webViewLink',
+    });
 
-  return response.data;
+    return response.data;
+  } catch (error) {
+    console.error('Error uploading to Google Drive:', error);
+    throw new Error('Google Drive upload failed');
+  }
 }
 
 // Route to upload PDF file
@@ -81,7 +97,6 @@ router.post('/upload-files/:userId', upload.single('file'), async (req, res) => 
     res.status(500).json({ status: 'error', message: 'Failed to upload file', error: error.message });
   }
 });
-
 
 // Route to fetch all files
 router.get('/get-files', async (req, res) => {
