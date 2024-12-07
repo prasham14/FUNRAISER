@@ -7,7 +7,6 @@ const express = require('express');
 const router = express.Router();
 const PdfDetailsSchema = require('../models/doc');
 
-// Google Drive API setup
 const path = require('path');
 const credentials = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_CONTENTS); // Load the credentials from .env file
 
