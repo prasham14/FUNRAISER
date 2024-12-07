@@ -5,29 +5,21 @@ const multer = require('multer');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
-
 const PdfDetailsSchema = require('../models/doc');
 
 // Google Drive API setup
 const path = require('path');
-// Resolve the key file path
-const KEYFILE_PATH = path.resolve(process.env.KEYFILE_PATH || ''); // Default to an empty string if undefined
-console.log('Resolved Keyfile Path:', path.resolve(process.env.KEYFILE_PATH || ''));
-if (!KEYFILE_PATH || !KEYFILE_PATH.endsWith('apikey.json')) {
-  throw new Error(
-    `Invalid KEYFILE_PATH: Ensure your environment variable is set correctly. Current value: ${KEYFILE_PATH}`
-  );
-}
+const credentials = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_CONTENTS); // Load the credentials from .env file
 
 // Folder ID where PDFs will be stored on Google Drive
-const GOOGLE_DRIVE_FOLDER_ID = process.env.FOLDER_ID; // Set this in your .env file
+const GOOGLE_DRIVE_FOLDER_ID = process.env.FOLDER_ID;
 if (!GOOGLE_DRIVE_FOLDER_ID) {
   throw new Error('FOLDER_ID is not set in your environment variables');
 }
 
 // Setup Google Auth and Drive
 const auth = new google.auth.GoogleAuth({
-  keyFile: KEYFILE_PATH,
+  credentials, // Use the credentials from the environment
   scopes: ['https://www.googleapis.com/auth/drive'],
 });
 const drive = google.drive({ version: 'v3', auth });
@@ -65,11 +57,11 @@ async function uploadToDrive(file, folderId) {
 
     return response.data;
   } catch (error) {
-    console.error('Error uploading to Google Drive:', error, KEYFILE_PATH);
-    return res.status(400).json({ path: KEYFILE_PATH });
-    throw new Error('Google Drive upload failed',);
+    console.error('Error uploading to Google Drive:', error);
+    throw new Error('Google Drive upload failed');
   }
 }
+
 
 // Route to upload PDF file
 router.post('/upload-files/:userId', upload.single('file'), async (req, res) => {
