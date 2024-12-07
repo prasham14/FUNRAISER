@@ -7,6 +7,7 @@ const express = require('express');
 const router = express.Router();
 const PdfDetailsSchema = require('../models/doc');
 
+// Google Drive API setup
 const path = require('path');
 const credentials = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_CONTENTS); // Load the credentials from .env file
 
@@ -18,7 +19,7 @@ if (!GOOGLE_DRIVE_FOLDER_ID) {
 
 // Setup Google Auth and Drive
 const auth = new google.auth.GoogleAuth({
-  credentials: credentials,
+  credentials, // Use the credentials from the environment
   scopes: ['https://www.googleapis.com/auth/drive'],
 });
 const drive = google.drive({ version: 'v3', auth });
@@ -60,7 +61,6 @@ async function uploadToDrive(file, folderId) {
     throw new Error('Google Drive upload failed');
   }
 }
-
 
 // Route to upload PDF file
 router.post('/upload-files/:userId', upload.single('file'), async (req, res) => {

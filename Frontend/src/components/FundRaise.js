@@ -70,7 +70,7 @@ const FormSubmission = ({ setActivesection }) => {
         documentData.append("file", file);
         documentData.append('userId', formData.user_id);
         documentData.append('fundId', fundId);
-
+        // documentData.append('title', title);
 
         const docResponse = await axios.post(
           `https://funraiser.onrender.com/doc/upload-files/${formData.user_id}`,
