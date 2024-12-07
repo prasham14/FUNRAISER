@@ -18,7 +18,7 @@ if (!GOOGLE_DRIVE_FOLDER_ID) {
 
 // Setup Google Auth and Drive
 const auth = new google.auth.GoogleAuth({
-  credentials, // Use the credentials from the environment
+  credentials: credentials,
   scopes: ['https://www.googleapis.com/auth/drive'],
 });
 const drive = google.drive({ version: 'v3', auth });
