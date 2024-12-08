@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaArrowLeft } from "react-icons/fa";
-
+import { toast } from 'react-toastify'
 const SeeDetailsInitiative = ({ setActive }) => {
   const [initiativeDetails, setInitiativeDetails] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -9,11 +9,22 @@ const SeeDetailsInitiative = ({ setActive }) => {
   const initiativeId = localStorage.getItem('selectedinitiativeId')
   const [showFullPurpose, setShowFullPurpose] = useState(false);
   const [showFullDescription, setShowFullDescription] = useState(false);
-
+  const emailId = localStorage.getItem('email');
+  const selectedemail = localStorage.getItem('selectedinitiativeEmail');
+  const [isUser, setIsUser] = useState(false);
   const truncateText = (text, isExpanded) => {
     if (isExpanded || text.length <= 30) return text;
     return text.slice(0, 30) + "...";
   };
+
+  useEffect(() => {
+    if (emailId === selectedemail) {
+      setIsUser(true);
+    }
+  }, [emailId, selectedemail]);
+  const handleIsUser = () => {
+    toast.error('This initiative is created by you ');
+  }
   useEffect(() => {
     const fetchInitiativeDetails = async () => {
       try {
@@ -110,7 +121,7 @@ const SeeDetailsInitiative = ({ setActive }) => {
       <button
         onClick={() => {
           localStorage.setItem('selectedinitiativeId', initiativeDetails._id);
-          setActive('join');
+          isUser ? (handleIsUser()) : (setActive('join'))
         }}
         className="bg-black text-white py-2 px-4 rounded-md hover:bg-[#aa4528] transition duration-300 w-full"
       >

@@ -24,7 +24,7 @@ const Home = () => {
   const navigate = useNavigate();
   function handleLogin() { navigate('/login'); }
   function handleFormSubmission() {
-    isLoggedIn ? (setActivesection('form')) : (navigate('/login'))
+    isLoggedIn ? (setActivesection('seeDetails')) : (navigate('/login'))
     setIsFormClicked(true);
 
   }

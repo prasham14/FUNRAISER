@@ -53,7 +53,10 @@ const FormSubmission = ({ setActivesection }) => {
   const handleSubmit = async (e) => {
     setIsLoading(true);
     e.preventDefault();
-
+    if (formData.phone.length !== 10) {
+      toast.error("Invalid Phone Number");
+      return;
+    }
     try {
       const token = localStorage.getItem('token');
       const fundResponse = await axios.post('https://funraiser.onrender.com/fund/raise', formData, {
@@ -114,7 +117,7 @@ const FormSubmission = ({ setActivesection }) => {
 
   return (
     <div
-      className="form-container max-w-2xl mx-auto bg-[#f2f1ed] shadow-md p-6 mt-12 mr-6 ml-6 overflow-y-auto no-scrollbar rounded-lg border border-gray-200"
+      className="form-container max-w-2xl mx-auto bg-[#f2f1ed] shadow-md p-6 mt-16 mr-6 ml-6 overflow-y-auto no-scrollbar rounded-lg border border-gray-200"
       style={{ maxHeight: "80vh" }}
     >
       {

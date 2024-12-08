@@ -103,13 +103,13 @@ const Initiatives = () => {
     <div className="relative h-screen w-screen bg-[#f2f1ed] py-10 px-6 shadow-xl overflow-y-auto">
       {/* Top Bar */}
       <div className="flex justify-between items-center mb-8">
-        <button
+        {/* <button
           onClick={handleBack}
           className="flex items-center text-black  hover:text-[#aa4528] text-xl font-bold transition-transform transform hover:scale-110"
         >
           <FaArrowLeft className="mr-2" />
 
-        </button>
+        </button> */}
 
         <button
           onClick={handleButton}

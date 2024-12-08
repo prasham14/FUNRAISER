@@ -59,7 +59,7 @@ const UserDetailsForm = ({ setActivesection }) => {
       .catch((error) => {
         toast.error('Internal error , try again later')
       });
-    setActivesection('');
+    setActivesection('form');
   };
   const handleBack = () => {
     setActivesection('')
@@ -165,7 +165,7 @@ const UserDetailsForm = ({ setActivesection }) => {
           type="submit"
           className="w-full py-2 bg-black text-white font-medium rounded-md hover:bg-[#aa4528] focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm transition duration-200"
         >
-          {isEditing ? "Update Details" : "Submit Details"}
+          {isEditing ? "Proceed with this Details" : "Submit Details"}
         </button>
       </form>
     </div>

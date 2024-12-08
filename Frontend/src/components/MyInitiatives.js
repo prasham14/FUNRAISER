@@ -128,12 +128,7 @@ const MyInitiatives = () => {
   return (
     <div className="relative h-screen w-screen bg-[#f2f1ed] py-10 px-6 shadow-xl overflow-y-auto">
       {
-        isLoading ? (<Spinner />) : (<div> <button
-          onClick={handleBack}
-          className="flex items-center text-black hover:text-[#aa4528] text-xl font-bold transition-transform transform hover:scale-110"
-        >
-          <FaArrowLeft />
-        </button>
+        isLoading ? (<Spinner />) : (<div>
           <div className="absolute top-4 right-4">
             <button
               onClick={() => setActive("createInitiative")}

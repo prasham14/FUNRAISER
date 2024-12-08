@@ -150,14 +150,13 @@ const MyFunds = () => {
       <div >{renderDoc()}</div>
       {
         isLoading ? (<Spinner />) : (<div>
-          <button
+          {/* <button
             onClick={handleBack}
             className="translate-y-16 translate-x-5 text-black hover:text-[#aa4528] text-xl font-bold transition-transform transform hover:scale-110"
           >
             <FaArrowLeft />
-          </button>
+          </button> */}
           <div className="max-w-7xl mx-auto p-8">
-
             <h2 className="text-center text-4xl font-extrabold text-black hover:text-[#aa4528] mb-10">
               Your Raised Funds
             </h2>

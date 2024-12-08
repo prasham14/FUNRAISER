@@ -217,7 +217,7 @@ function Profile({ setIsLoggedIn, setActivesection }) {
         )}
 
         {/* Additional Details Section */}
-        <div>
+        {/* <div>
           {!isDetailsAdded ? (
             <button
               onClick={handleSeeDetails}
@@ -228,7 +228,7 @@ function Profile({ setIsLoggedIn, setActivesection }) {
           ) : (
             <div></div>
           )}
-        </div>
+        </div> */}
 
         {/* Navigation Buttons */}
         <div className="space-y-4">

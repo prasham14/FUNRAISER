@@ -50,6 +50,9 @@ const Help = () => {
           <li className="flex items-center">
             <span className="mr-2">✔️</span> 24/7 support to assist with your fundraising needs
           </li>
+          <li className="flex items-center">
+            <span className="mr-2">✔️</span> The Donated amount will be transferred to us and then it will be transferred to the fundraiser's account by clicking Withdraw in My Funds Section.
+          </li>
         </ul>
       </section>
 
@@ -75,6 +78,7 @@ const Help = () => {
           </a>
         </div> */}
       </footer>
+
     </div>
   )
 }

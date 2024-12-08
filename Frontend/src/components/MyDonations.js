@@ -45,11 +45,7 @@ const MyDonations = () => {
             },
           });
 
-          if (Array.isArray(response.data)) {
-            setDonationData(response.data);
-          } else {
-            setError('Invalid response format');
-          }
+          setDonationData(response.data);
         } catch (err) {
           setError(err.response?.data?.error || err.message || 'An error occurred');
         }
@@ -57,7 +53,7 @@ const MyDonations = () => {
 
       fetchDonations();
     } else {
-      setError('No ID or token found in localStorage');
+      setError('No ID or token found ');
     }
   }, [id, token]);
 

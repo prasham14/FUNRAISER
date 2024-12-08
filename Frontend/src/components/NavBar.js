@@ -94,7 +94,7 @@ const NavBar = ({ setActivesection, isLoggedIn, setIsLoggedIn }) => {
               </h1>
             </div>
             <button
-              className="items-center justify-center hover:underline text-black leading-[1.75] h-10 px-2 py-2 transition-all duration-300"
+              className="md:block hidden items-center justify-center hover:underline text-black leading-[1.75] h-10 px-2 py-2 transition-all duration-300"
               onClick={handleHome}
             >
               Home
@@ -188,7 +188,7 @@ const NavBar = ({ setActivesection, isLoggedIn, setIsLoggedIn }) => {
                       NGO's
                     </button>
                   </li>
-                  {isLoggedIn && (
+                  {/* {isLoggedIn && (
                     <li>
                       <button
                         onClick={handleFormSubmission}
@@ -197,7 +197,7 @@ const NavBar = ({ setActivesection, isLoggedIn, setIsLoggedIn }) => {
                         Start a Fundraiser
                       </button>
                     </li>
-                  )}
+                  )} */}
                   <li>
                     <button
                       onClick={handleContactSupport}

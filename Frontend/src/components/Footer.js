@@ -1,9 +1,9 @@
 import React from 'react';
 import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin, FaGithub } from 'react-icons/fa'; // Social media icons
-
+import { toast } from 'react-toastify';
 const Footer = () => {
   const handleButton = () => {
-    alert('Thank you')
+    toast.success('Thank you for joining')
   }
   return (
     <footer className="bg-[#090702] text-white py-10 border-t-2 border-gray-600">
