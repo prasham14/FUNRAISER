@@ -165,7 +165,7 @@ const NavBar = ({ setActivesection, isLoggedIn, setIsLoggedIn }) => {
               </button>
 
               {isMenuOpen && (
-                <ul className="absolute right-0 mt-2 w-48 bg-[#faf9f6]  border border-gray-200 shadow-lg rounded-lg p-2 text-gray-700 space-y-2">
+                <ul className="absolute right-0 mt-2 w-48 bg-[#faf9f6]  border border-gray-200 shadow-lg rounded-lg p-2 text-black space-y-2">
                   <li>
                     <button
                       onClick={handleViewFundRaiser}
@@ -192,7 +192,7 @@ const NavBar = ({ setActivesection, isLoggedIn, setIsLoggedIn }) => {
                   </li>
 
 
-                  <li>
+                  {/* <li>
                     {isLoggedIn && (
                       <button
                         className=" block md:hidden w-full text-left hover:bg-white py-2 px-4 rounded-lg transition duration-200"
@@ -201,7 +201,7 @@ const NavBar = ({ setActivesection, isLoggedIn, setIsLoggedIn }) => {
                         Start a Fundraiser
                       </button>
                     )}
-                  </li>
+                  </li> */}
 
                   <li>
                     <button

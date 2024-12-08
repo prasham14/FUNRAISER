@@ -66,14 +66,14 @@ const UserDetailsForm = ({ setActivesection }) => {
       ;
   }
   return (
-    <div className="w-[50vh] max-h-[500px] p-6 bg-[#f2f1ed] shadow-lg rounded-lg mt-8 overflow-y-auto no-scrollbar border border-gray-200">
+    <div className=" w-[320px]  max-h-[500px] p-6 bg-[#f2f1ed] shadow-lg rounded-lg mt-8 overflow-y-auto no-scrollbar border border-gray-200 ">
       <h2 className="text-2xl font-bold mb-4 text-center text-gray-800 relative">
         <div className="absolute top-0 right-0">
           <button
             onClick={handleBack}
             className="text-black hover:text-[#aa4528] transition duration-200"
           >
-            <ImCross />
+            <ImCross size={15} />
           </button>
         </div>
         {isEditing ? "Update Your Details" : "Enter Your Details"}

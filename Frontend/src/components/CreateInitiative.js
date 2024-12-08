@@ -67,12 +67,13 @@ const FormSubmission = ({ setActive }) => {
       <div className="relative mb-3">
         <button
           onClick={handleBack}
-          className="absolute right-0 top-0 text-black  hover:text-[#aa4528] transition duration-150 flex items-center space-x-2"
+          className="absolute right-0 top-0 text-black  hover:text-[#aa4528] transition duration-150 flex items-center space-x-2 "
         >
-          <ImCross size={20} />
+          <ImCross size={15} />
         </button>
-        <h2 className="form-heading text-lg font-bold text-gray-800 mb-6">Fill this form to create an Initiative</h2>
+        <h2 className="form-heading text-center text-lg font-bold text-gray-800 mb-6 mr-5">Create Initiative</h2>
       </div>
+
 
 
       <form onSubmit={handleSubmit} className="form space-y-4">

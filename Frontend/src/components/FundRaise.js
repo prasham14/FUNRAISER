@@ -127,7 +127,7 @@ const FormSubmission = ({ setActivesection }) => {
               >
                 <ImCross size={15} />
               </button>
-              <h2 className="text-3xl font-extrabold text-gray-800 text-center pt-2">
+              <h2 className="text-3xl font-extrabold text-gray-800 text-center pt-5">
                 Start a Fundraiser
               </h2>
             </div>

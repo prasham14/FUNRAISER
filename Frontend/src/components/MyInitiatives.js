@@ -280,23 +280,23 @@ const MyInitiatives = () => {
           {/* Members Modal */}
           {memberDetails && (
             <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center backdrop-blur-sm">
-              <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
+              <div className="bg-[#f2f1ed] p-8 rounded-lg shadow-lg w-full max-w-lg">
 
                 <div className='flex items-center justify-between'>
                   <button
                     onClick={handleCloseModal}
                     className="text-black text-xl"
                   >
-                    <ImCross />
+                    <FaArrowLeft size={15} />
                   </button>
-                  <h4 className="text-lg font-bold text-teal-700 mb-2 mx-auto">
+                  <h4 className="text-lg font-bold text-black mb-2 mx-auto">
                     Members Details
                   </h4>
                 </div>
                 <div className="overflow-auto bg-gray-50 rounded-lg shadow-md p-4 border border-gray-200">
                   <table className="w-full text-sm text-left text-gray-600">
                     <thead>
-                      <tr className="bg-teal-600 text-white">
+                      <tr className="bg-black text-white">
                         <th scope="col" className="px-4 py-2">#</th>
                         <th scope="col" className="px-4 py-2">Name</th>
                         <th scope="col" className="px-4 py-2">Phone Number</th>
@@ -305,7 +305,7 @@ const MyInitiatives = () => {
                     <tbody>
                       {memberDetails.memberNames.map((name, index) => (
                         <tr key={index} className="bg-white border-b hover:bg-gray-100">
-                          <td className="px-4 py-2 font-medium text-teal-700">{index + 1}</td>
+                          <td className="px-4 py-2 font-medium text-black">{index + 1}</td>
                           <td className="px-4 py-2">{name}</td>
                           <td className="px-4 py-2">{memberDetails.memberPhone[index]}</td>
                         </tr>

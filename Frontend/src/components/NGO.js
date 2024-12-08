@@ -85,8 +85,8 @@ const NGO = () => {
 
   return (
     <div className="min-h-screen bg-[#f2f1ed] py-12 px-6 lg:px-16 ">
-      <button onClick={handleBack} className='
-      flex items-center text-black  hover:text-[#aa4528] text-xl font-bold transition-transform transform hover:scale-110'><FaArrowLeft /></button>
+      {/* <button onClick={handleBack} className='
+      flex items-center text-black  hover:text-[#aa4528] text-xl font-bold transition-transform transform hover:scale-110'><FaArrowLeft /></button> */}
       <h1 className="text-center sm:text-4xl text-2xl font-bold mt-5 text-black mb-12">
         Here are the Most Popular NGOs and Foundations in India!
       </h1>

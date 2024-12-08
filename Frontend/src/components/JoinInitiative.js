@@ -15,6 +15,12 @@ const JoinInitiative = ({ initiativeId, setActive }) => {
         return;
       }
 
+      // Validation for 10-digit phone number
+      if (phone.length !== 10) {
+        toast.warning('Invalid Phone Number!');
+        return;
+      }
+
       const response = await axios.post(
         `https://funraiser.onrender.com/init/join/${initiativeId}`,
         { name, phone },
@@ -75,7 +81,7 @@ const JoinInitiative = ({ initiativeId, setActive }) => {
           Phone:
         </label>
         <input
-          type="text"
+          type="number"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           className="w-full px-4 py-2 border border-gray-300 rounded-md "
@@ -91,7 +97,6 @@ const JoinInitiative = ({ initiativeId, setActive }) => {
         Join
       </button>
     </div>
-
   );
 }
 

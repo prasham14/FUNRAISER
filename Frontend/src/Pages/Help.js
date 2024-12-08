@@ -9,9 +9,9 @@ const Help = () => {
   }
   return (
     <div className=" bg-[#f2f1ed] shadow-lg rounded-lg p-10 md:p-14 py-16">
-      <button onClick={handleBack} className="flex items-center text-black  hover:text-[#aa4528] text-xl font-bold transition-transform transform hover:scale-110">
+      {/* <button onClick={handleBack} className="flex items-center text-black  hover:text-[#aa4528] text-xl font-bold transition-transform transform hover:scale-110">
         <FaArrowLeft />
-      </button>
+      </button> */}
 
       <header className="text-center mb-12">
         <h1 className="text-4xl font-extrabold text-black">Welcome to Our Fundraising Platform</h1>
@@ -61,7 +61,7 @@ const Help = () => {
         </p>
 
         <p className="text-black mb-2">Rajasthan, India</p>
-        <p className="text-black mt-6">Follow us on:</p>
+        {/* <p className="text-black mt-6">Follow us on:</p>
 
         <div className="flex justify-center space-x-8 mt-4">
           <a href="#" target="_blank" className="text-black hover:text-[#aa4528] transition duration-200 flex items-center space-x-2">
@@ -73,7 +73,7 @@ const Help = () => {
           <a href="#" target="_blank" className="text-black hover:text-[#aa4528] transition duration-200 flex items-center space-x-2">
             <FaTwitter /><span>Twitter</span>
           </a>
-        </div>
+        </div> */}
       </footer>
     </div>
   )
