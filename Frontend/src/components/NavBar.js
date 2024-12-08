@@ -36,7 +36,7 @@ const NavBar = ({ setActivesection, isLoggedIn, setIsLoggedIn }) => {
   };
 
   const handleFormSubmission = () => {
-    isLoggedIn ? setActivesection('form') : navigate('/login');
+    isLoggedIn ? setActivesection('seeDetails') : navigate('/login');
     setIsFormClicked(true);
     setIsMenuOpen(false); // Close menu after click
   };

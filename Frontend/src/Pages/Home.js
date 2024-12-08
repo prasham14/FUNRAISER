@@ -40,18 +40,17 @@ const Home = () => {
   };
 
   useEffect(() => {
-    const checkCookie = () => {
-      const token = document.cookie
-        .split('; ')
-        .find(cookie => cookie.startsWith('cookies='));
+    const checkToken = () => {
+      const token = localStorage.getItem('token');
       if (!token) {
         setIsLoggedIn(false);
-        localStorage.setItem('isLoggedIn', false);
+        // localStorage.setItem('isLoggedIn', false);
         navigate('/');
       }
     };
-    const interval = setInterval(checkCookie, 24 * 60 * 1000);
-    return () => clearInterval(interval);
+
+    const interval = setInterval(checkToken, 24 * 60 * 60 * 1000); // 24 hours interval
+    return () => clearInterval(interval); // Clear interval on component unmount
   }, [navigate]);
 
   const renderActiveComponent = () => {

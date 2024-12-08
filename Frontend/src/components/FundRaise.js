@@ -55,6 +55,7 @@ const FormSubmission = ({ setActivesection }) => {
     e.preventDefault();
     if (formData.phone.length !== 10) {
       toast.error("Invalid Phone Number");
+      setIsLoading(false);
       return;
     }
     try {
