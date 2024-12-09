@@ -165,7 +165,7 @@ const Initiatives = () => {
                 className="bg-white shadow-lg rounded-lg p-6 border border-gray-200 hover:shadow-xl transform transition-transform hover:-translate-y-1"
               >
                 <h3 className="text-xl font-semibold text-black text-center hover:underline mb-4 hover:transition duration-300">
-                  {ini.title}
+                  {ini.title.length > 25 ? `${ini.title.slice(0, 25)}...` : (ini.title)};
                 </h3>
                 <div className="mb-3 flex justify-between">
                   <p className="text-sm font-semibold text-gray-600">Date Created: {new Date(ini.date).toLocaleDateString()}</p>

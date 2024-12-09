@@ -150,7 +150,7 @@ const MyInitiatives = () => {
                     className="bg-white rounded-lg shadow-md p-6 border border-gray-200 transform transition duration-300 hover:scale-105 hover:shadow-lg"
                   >
                     <h3 className="text-lg font-semibold text-gray-800 mb-4">
-                      {initiative.title}
+                      {initiative.title.length > 30 ? `${initiative.title.slice(0, 30)}...` : (initiative.title)}
                     </h3>
                     <p className="text-sm text-gray-600 mb-2">
                       <strong>Purpose:</strong>{" "}

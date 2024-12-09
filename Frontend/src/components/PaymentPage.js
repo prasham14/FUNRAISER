@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from "react-toastify"
-const PaymentComponent = ({ setIsDoc }) => {
+const PaymentComponent = ({ setIsDoc, setActivesection }) => {
   const [amount, setAmount] = useState('');
   const [paymentStatus, setPaymentStatus] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -53,6 +53,7 @@ const PaymentComponent = ({ setIsDoc }) => {
               setPaymentStatus(verifyResponse.data.message);
               toast.success("Payment Successfull");
               setIsDoc('');
+              setActivesection('');
             } catch (error) {
               toast.error("Transaction failed")
               console.error("Payment verification failed:", error);

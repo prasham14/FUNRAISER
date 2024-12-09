@@ -62,7 +62,7 @@ const Option1 = ({ setActivesection }) => {
       case 'bankdetailsoffund':
         return <ShowBankDetails setIsDoc={setIsDoc} />;
       case 'pay':
-        return <PaymentComponent setIsDoc={setIsDoc} />
+        return <PaymentComponent setIsDoc={setIsDoc} setActivesection={setActivesection} />
       default:
         return null;
     }
@@ -86,7 +86,9 @@ const Option1 = ({ setActivesection }) => {
       { x: 'Remaining', y: goalAmount - raisedAmount },
     ];
   };
-
+  const handlePay = () => {
+    setIsDoc('pay')
+  }
   return (
     <div className=" w-[100vw] p-6 bg-opacity-75 rounded-lg shadow-lg mt-20  h-[100vh] flex justify-center items-center  ">
 
@@ -104,7 +106,7 @@ const Option1 = ({ setActivesection }) => {
             {selectedFund.isExpired && (
               <p className="text-red-500 font-bold text-lg">Expired</p>
             )}
-            <div className="chart-container mr-8 w-24 relative">
+            <div className="chart-container mr-3 w-24 relative">
               <VictoryPie
                 data={getChartData(selectedFund)}
                 innerRadius={100} // Makes it a donut chart
@@ -133,16 +135,16 @@ const Option1 = ({ setActivesection }) => {
               Documents
             </button>
             <button
-              onClick={handleBankDetails}
+              onClick={handlePay}
               className="bg-black text-white py-2 px-4 rounded shadow-lg hover:bg-[#aa4528] transition-all duration-300 ease-in-out w-fit"
             >
-              Bank Details
+              Donate
             </button>
             <button
               className="bg-[#aa4528] text-white py-2 px-4 rounded shadow-lg hover:bg-black transition-all duration-300 ease-in-out w-fit"
               onClick={goBackHandler}
             >
-              Back to Funds List
+              Go Back
             </button>
           </div>
 

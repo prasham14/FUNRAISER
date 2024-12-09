@@ -5,22 +5,25 @@ import UserDocuments from './UserDoc';
 import { VictoryPie } from 'victory';
 import ShowBankDetails from './ShowBankDetails';
 import PaymentComponent from './PaymentPage';
-import Spinner from './Spinner';
+import { toast } from 'react-toastify';
 const Option3 = ({ setActivesection }) => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const [funds, setFunds] = useState([]);
   const [selectedFund, setSelectedFund] = useState(null);
   const [isDoc, setIsDoc] = useState('');
   const token = localStorage.getItem('token');
-
   useEffect(() => {
     const fetchFunds = async () => {
       try {
+        setIsLoading(true);
         const response = await axios.get('https://funraiser.onrender.com/options/option3', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
         setFunds(response.data);
+
       } catch (error) {
         console.error('Error fetching education funds', error);
       }
@@ -40,6 +43,7 @@ const Option3 = ({ setActivesection }) => {
   const fundId = localStorage.getItem('selectedFundId');
   const handleDonate = () => {
     setIsDoc('selected');
+    // toast.success('Scroll down for documents')
   };
 
   const goBackHandler = () => {
@@ -58,7 +62,7 @@ const Option3 = ({ setActivesection }) => {
       case 'bankdetailsoffund':
         return <ShowBankDetails setIsDoc={setIsDoc} />;
       case 'pay':
-        return <PaymentComponent setIsDoc={setIsDoc} />
+        return <PaymentComponent setIsDoc={setIsDoc} setActivesection={setActivesection} />
       default:
         return null;
     }
@@ -82,13 +86,15 @@ const Option3 = ({ setActivesection }) => {
       { x: 'Remaining', y: goalAmount - raisedAmount },
     ];
   };
-
+  const handlePay = () => {
+    setIsDoc('pay')
+  }
   return (
     <div className=" w-[100vw] p-6 bg-opacity-75 rounded-lg shadow-lg mt-20  h-[100vh] flex justify-center items-center  ">
+
       {selectedFund ? (
         <div className="mx-4 p-8 bg-white max-h-[75%] overflow-y-auto no-scrollbar rounded-md ">
           <h1 className="sm:text-3xl text-xl font-bold mb-4 text-gray-900 text-center">{selectedFund.title}</h1>
-
           <div className=' flex justify-between items-center mb-8 flex-col lg:flex-row '>
             <div>
               <p className="mb-3 text-gray-700"><strong>Funds Available:</strong> {selectedFund.funds} INR</p>
@@ -100,16 +106,17 @@ const Option3 = ({ setActivesection }) => {
             {selectedFund.isExpired && (
               <p className="text-red-500 font-bold text-lg">Expired</p>
             )}
-            <div className="chart-container mr-8 w-24 relative">
+            <div className="chart-container mr-3 w-24 relative">
               <VictoryPie
                 data={getChartData(selectedFund)}
-                innerRadius={100}
-                colorScale={['rgb(170, 59, 40)', 'rgb(242, 241, 237)']}
-                labels={() => ''}
+                innerRadius={100} // Makes it a donut chart
+                colorScale={['rgb(170, 59, 40)', 'rgb(242, 241, 237)']} // Updated colors
+                labels={() => ''} // Hides slice labels
                 style={{
                   labels: { fill: 'gray', fontSize: 20, fontWeight: 'bold' },
                 }}
               />
+              {/* Central label showing percentage */}
               <div
                 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-800  font-bold text-xs"
                 style={{ pointerEvents: 'none' }}
@@ -118,6 +125,8 @@ const Option3 = ({ setActivesection }) => {
               </div>
             </div>
           </div>
+
+
           <div className='flex flex-col justify-between items-center sm:justify-start gap-3 sm:flex-row'>
             <button
               onClick={handleDonate}
@@ -126,16 +135,16 @@ const Option3 = ({ setActivesection }) => {
               Documents
             </button>
             <button
-              onClick={handleBankDetails}
+              onClick={handlePay}
               className="bg-black text-white py-2 px-4 rounded shadow-lg hover:bg-[#aa4528] transition-all duration-300 ease-in-out w-fit"
             >
-              Bank Details
+              Donate
             </button>
             <button
               className="bg-[#aa4528] text-white py-2 px-4 rounded shadow-lg hover:bg-black transition-all duration-300 ease-in-out w-fit"
               onClick={goBackHandler}
             >
-              Back to Funds List
+              Go Back
             </button>
           </div>
 
@@ -149,7 +158,6 @@ const Option3 = ({ setActivesection }) => {
             </button>
           </div>
           <h1 className="sm:w-[300px] w-[200px] mx-auto translate-y-[-40px] sm:text-4xl text-2xl  font-bold text-center  text-gray-900">Medicinal Funds</h1>
-
           <ul className="">
             {funds.length > 0 ? (
               funds.map((fund, index) => (
@@ -158,10 +166,8 @@ const Option3 = ({ setActivesection }) => {
                   className="fund-card bg-[#faf9f6]  p-6 transition-transform transform hover:-translate-y-2 border border-black m-2 rounded-lg hover:shadow-2xl overflow-hidden "
                 >
                   <h2 className="fund-title sm:text-2xl text-lg sm:font-semibold font-bold mb-3 text-gray-900">{fund.title}</h2>
-
                   <p className="mb-2 text-gray-700"><strong>Funds Available:</strong> {fund.funds} INR</p>
                   <p className="mb-2 text-gray-700"><strong>Amount Raised:</strong> {fund.raised} INR</p>
-
                   {isFundEndingSoon(fund.date) && (
                     null
                   )}
@@ -179,15 +185,13 @@ const Option3 = ({ setActivesection }) => {
               ))
             ) : (
               <p className="text-center text-lg text-gray-700 col-span-full">
-                No Medicinal funds found
+                No funds found
               </p>
             )}
           </ul>
         </div>
-
       )
       }
-
     </div >
   );
 };
