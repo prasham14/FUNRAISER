@@ -86,8 +86,16 @@ const Option3 = ({ setActivesection }) => {
       { x: 'Remaining', y: goalAmount - raisedAmount },
     ];
   };
+  const funduserId = localStorage.getItem('fundUserId');
+  const userId = localStorage.getItem('userId');
   const handlePay = () => {
-    setIsDoc('pay')
+    if (userId === funduserId) {
+      toast.warning('This Fund is raised by you')
+    }
+    else {
+      setIsDoc('pay')
+    }
+
   }
   return (
     <div className=" w-[100vw] p-6 bg-opacity-75 rounded-lg shadow-lg mt-20  h-[100vh] flex justify-center items-center  ">
