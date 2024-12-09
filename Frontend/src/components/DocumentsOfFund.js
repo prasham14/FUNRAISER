@@ -65,53 +65,45 @@ function DocOfFunds({ setIsDocument }) {
           <ImCross size={15} />
         </button>
         {documents.length === 0 ? (
-          <p className="text-gray-600 text-center">No documents uploaded yet.</p>
+          <p className="text-red-600">No documents available.</p>
         ) : (
-          <div>
-            <ul className="space-y-4">
-              {documents.map((doc) => (
-                <li
-                  key={doc._id}
-                  className="flex items-center justify-between p-4 border border-gray-300 rounded-lg shadow-sm hover:shadow-md transition"
-                >
-                  <div>
-                    <p className="font-semibold text-gray-800">{doc.title}</p>
-                    <p className="sm:text-sm text-xs text-gray-600">{doc.pdf.length > 10 ? `${doc.pdf.slice(0, 20)}...` : (doc.pdf)}</p>
-                  </div>
-                  <div className="flex space-x-4">
-                    <button
-                      onClick={() => setViewPdf(`https://mernfr.onrender.com/doc/files/${doc.pdf}`)}
-                      className="btn btn-view text-blue-500 hover:text-blue-700 transition"
-                    >
-                      <FaEye size={20} />
-                    </button>
-                    <button
-                      onClick={() => downloadDocument(doc.pdf)}
-                      className="btn btn-download text-black hover:text-[#aa4528] transition"
-                    >
-                      <FaDownload size={20} />
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-        {viewPdf && (
-          <div className="modal fixed inset-0 bg-black bg-opacity-50 backdrop-blur-md flex items-center justify-center">
-            <div className="relative bg-white rounded-lg shadow-lg p-8 w-11/12 md:w-2/3 lg:w-1/2">
-              <button
-                onClick={() => setViewPdf(null)}
-                className="absolute top-2 right-4 text-red-500 font-bold"
-              >
-                Close
-              </button>
-              <iframe
-                src={viewPdf}
-                title="PDF Viewer"
-                className="w-full h-96 border rounded"
-              ></iframe>
-            </div>
+          <div className="overflow-x-auto">
+            <table className="table-auto w-full bg-[#f2f1ed] shadow-md rounded-lg overflow-hidden">
+              <thead className="bg-gray-200 text-gray-700">
+                <tr>
+                  <th className="px-4 py-2 text-left">Title</th>
+                  <th className="px-4 py-2 text-center">View</th>
+                  {/* <th className="px-4 py-2 text-center">Download</th> */}
+                </tr>
+              </thead>
+              {/* <tbody>
+                {documents.map((doc) => (
+                  <tr key={doc._id} className="border-b last:border-none hover:bg-gray-50">
+                    <td className="px-4 py-2">{doc.title || 'Untitled'}</td>
+                    <td className="px-6 py-2 text-center">
+                      <a
+                        href={doc.pdf}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-500 hover:underline"
+                      >
+                        <FaEye size={20} />
+                      </a>
+                    </td>
+                    <td className="px-4 py-2 text-center">
+                      <button
+                        onClick={() =>
+                          handleDownload(doc.pdf.split('/').pop(), `${doc.title}.pdf`)
+                        }
+                        className="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                      >
+                        <FaDownload size={16} />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody> */}
+            </table>
           </div>
         )}
       </div>
