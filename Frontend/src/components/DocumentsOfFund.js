@@ -76,7 +76,7 @@ function DocOfFunds({ setIsDocument }) {
                   {/* <th className="px-4 py-2 text-center">Download</th> */}
                 </tr>
               </thead>
-              {/* <tbody>
+              <tbody>
                 {documents.map((doc) => (
                   <tr key={doc._id} className="border-b last:border-none hover:bg-gray-50">
                     <td className="px-4 py-2">{doc.title || 'Untitled'}</td>
@@ -90,7 +90,7 @@ function DocOfFunds({ setIsDocument }) {
                         <FaEye size={20} />
                       </a>
                     </td>
-                    <td className="px-4 py-2 text-center">
+                    {/* <td className="px-4 py-2 text-center">
                       <button
                         onClick={() =>
                           handleDownload(doc.pdf.split('/').pop(), `${doc.title}.pdf`)
@@ -99,10 +99,10 @@ function DocOfFunds({ setIsDocument }) {
                       >
                         <FaDownload size={16} />
                       </button>
-                    </td>
+                    </td> */}
                   </tr>
                 ))}
-              </tbody> */}
+              </tbody>
             </table>
           </div>
         )}
