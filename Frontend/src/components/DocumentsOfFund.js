@@ -30,27 +30,27 @@ function DocOfFunds({ setIsDocument }) {
     setIsDocument('');
   }
 
-  const downloadDocument = async (fileName) => {
-    try {
-      const response = await axios.get(`https://funraiser.onrender.com/doc/download/${fileName}`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
-        responseType: 'blob' // Important for handling file downloads
-      });
+  // const downloadDocument = async (fileName) => {
+  //   try {
+  //     const response = await axios.get(`https://funraiser.onrender.com/doc/download/${fileName}`, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`
+  //       },
+  //       responseType: 'blob' // Important for handling file downloads
+  //     });
 
-      // Create a URL and download the file
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', fileName); // File name for download
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } catch (error) {
-      console.error("Error downloading document:", error);
-    }
-  };
+  //     // Create a URL and download the file
+  //     const url = window.URL.createObjectURL(new Blob([response.data]));
+  //     const link = document.createElement('a');
+  //     link.href = url;
+  //     link.setAttribute('download', fileName); // File name for download
+  //     document.body.appendChild(link);
+  //     link.click();
+  //     document.body.removeChild(link);
+  //   } catch (error) {
+  //     console.error("Error downloading document:", error);
+  //   }
+  // };
 
 
   return (
