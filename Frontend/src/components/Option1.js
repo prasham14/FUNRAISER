@@ -90,6 +90,7 @@ const Option1 = ({ setActivesection }) => {
   const funduserId = localStorage.getItem('fundUserId');
   const userId = localStorage.getItem('userId');
   const handlePay = () => {
+    localStorage.setItem('fundUserId', selectedFund.userId);
     if (userId === funduserId) {
       toast.warning('This Fund is raised by you')
     }
