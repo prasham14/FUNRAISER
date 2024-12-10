@@ -229,9 +229,7 @@ const MyFunds = () => {
                             >
                               <MdDelete />
                             </button>
-                          ) : <p className="text-center text-gray-600 text-lg col-span-full">
-                            No initiatives found!
-                          </p>}
+                          ) : (null)}
                           <button
                             onClick={fund.raised > 1000 ? (() => { setIsDocument('withdraw') }) : (handleLessWithdraw)}
                             className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300"
@@ -255,7 +253,7 @@ const MyFunds = () => {
                 ))
               ) : (
                 <p className="text-center text-gray-600 text-lg col-span-full">
-                  No funds found!
+                  No Funds found!
                 </p>
               )}
             </ul>
