@@ -55,9 +55,9 @@ const PaymentComponent = ({ setIsDoc, setActivesection }) => {
               setIsDoc('');
               setActivesection('');
             } catch (error) {
-              toast.error("Transaction failed")
-              console.error("Payment verification failed:", error);
-              setPaymentStatus("Payment verification failed. Please try again.");
+              toast.error('Amount Limit Exceeded')
+              console.error('Error creating payment order:', error);
+              setPaymentStatus("Please try again with lower amount.");
             }
           },
           prefill: {

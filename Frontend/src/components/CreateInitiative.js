@@ -37,6 +37,10 @@ const FormSubmission = ({ setActive }) => {
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (formData.phone.length !== 10) {
+      toast.error('Invalid Phone Number');
+      return;
+    }
     try {
 
       const token = localStorage.getItem('token');

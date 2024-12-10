@@ -17,6 +17,7 @@ const MyDonations = () => {
   const [donationData, setDonationData] = useState(null);
   const [selectedFund, setSelectedFund] = useState(null);
   const [error, setError] = useState(null);
+  const [found, setFound] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const id = localStorage.getItem('userId');
   const token = localStorage.getItem('token');
@@ -30,6 +31,9 @@ const MyDonations = () => {
       });
       setSelectedFund(response.data);
       setShowModal(true);
+      if (response) {
+        setFound(true);
+      }
     } catch (err) {
       setError(err.response?.data?.error || err.message || 'An error occurred');
     }
@@ -118,7 +122,7 @@ const MyDonations = () => {
       )}
 
       {showModal && selectedFund && (
-        <div className="fixed inset-0 z-50 flex justify-center items-center">
+        found ? (<div className="fixed inset-0 z-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-4xl relative">
             <button
               onClick={closeModal}
@@ -143,7 +147,8 @@ const MyDonations = () => {
               <span className="text-gray-600"> Rs. {selectedFund.raised}</span>
             </div>
           </div>
-        </div>
+        </div>) : (<p>This Fund Is Deleted</p>)
+
       )}
     </div>
   );
