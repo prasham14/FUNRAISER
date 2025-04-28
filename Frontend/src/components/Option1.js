@@ -17,7 +17,7 @@ const Option1 = ({ setActivesection }) => {
     const fetchFunds = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get('https://funraiser.onrender.com/options/option1', {
+        const response = await axios.get('https://funraiser-pvio.vercel.app/options/option1', {
           headers: {
             Authorization: `Bearer ${token}`,
           },

@@ -60,7 +60,7 @@ const FormSubmission = ({ setActivesection }) => {
     }
     try {
       const token = localStorage.getItem('token');
-      const fundResponse = await axios.post('https://funraiser.onrender.com/fund/raise', formData, {
+      const fundResponse = await axios.post('https://funraiser-pvio.vercel.app/fund/raise', formData, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -77,7 +77,7 @@ const FormSubmission = ({ setActivesection }) => {
         documentData.append('title', title);
 
         const docResponse = await axios.post(
-          `https://funraiser.onrender.com/doc/upload-files/${formData.user_id}`,
+          `https://funraiser-pvio.vercel.app/doc/upload-files/${formData.user_id}`,
           documentData,
           {
             headers: {

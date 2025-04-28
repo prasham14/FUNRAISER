@@ -22,7 +22,7 @@ const JoinInitiative = ({ initiativeId, setActive }) => {
       }
 
       const response = await axios.post(
-        `https://funraiser.onrender.com/init/join/${initiativeId}`,
+        `https://funraiser-pvio.vercel.app/init/join/${initiativeId}`,
         { name, phone },
         {
           headers: {

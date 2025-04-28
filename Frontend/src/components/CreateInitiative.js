@@ -44,7 +44,7 @@ const FormSubmission = ({ setActive }) => {
     try {
 
       const token = localStorage.getItem('token');
-      const response = await axios.post(`https://funraiser.onrender.com/init/createInitiative/${emailId}`, formData, {
+      const response = await axios.post(`https://funraiser-pvio.vercel.app/init/createInitiative/${emailId}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`
         }

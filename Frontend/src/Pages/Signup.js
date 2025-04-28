@@ -15,7 +15,7 @@ const Signup = () => {
     e.preventDefault();
     // console.log('Request data:', { username, email, password });
     try {
-      const response = await axios.post('https://funraiser.onrender.com/signup', {
+      const response = await axios.post('https://funraiser-pvio.vercel.app/signup', {
         username,
         email,
         password,
