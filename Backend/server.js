@@ -18,7 +18,7 @@ require('dotenv').config();
 const _dirname = path.resolve();
 
 app.use(express.json());
-app.use(cors({ origin: 'https://funraiser.onrender.com', credentials: true }));
+app.use(cors({ origin: process.env.frontend_url, credentials: true }));
 app.use("/files", express.static("files"));
 app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.json());
