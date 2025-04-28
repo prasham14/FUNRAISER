@@ -1,5 +1,11 @@
 Welcome to the Fundraising Platform! This application allows users to create and manage fundraising initiatives, enabling donors to contribute directly to various causes.
 Built using the MERN stack (MongoDB, Express.js, React.js, and Node.js), this platform is designed for scalability, efficiency, and ease of use.
+
+https://funraiser-nxtd.vercel.app/
+user - demo@gmail.com
+pass - 1
+
+
 ## Features
 
 # For Fundraisers:
