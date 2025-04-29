@@ -8,6 +8,7 @@ import { CiEdit } from "react-icons/ci"
 import { toast } from "react-toastify"
 import DocOfFunds from './DocumentsOfFund';
 import Spinner from './Spinner';
+
 const MyFunds = () => {
   const [funds, setFunds] = useState([]);
   const [isdoc, setisdoc] = useState([]);

@@ -118,17 +118,18 @@ const SeeDetailsInitiative = ({ setActive }) => {
         <p className="text-gray-800">Phone: +91 {phone}</p>
       </div>
 
-      <button
-        onClick={() => {
-          localStorage.setItem('selectedinitiativeId', initiativeDetails._id);
-          setActive('join')
-        }}
-        className="bg-black text-white py-2 px-4 rounded-md hover:bg-[#aa4528] transition duration-300 w-full"
-      >
-        {
-        isUser ? (null):('Join')
-      }
-      </button>
+      {!isUser && (
+  <button
+    onClick={() => {
+      localStorage.setItem('selectedinitiativeId', initiativeDetails._id);
+      setActive('join');
+    }}
+    className="bg-black text-white py-2 px-4 rounded-md hover:bg-[#aa4528] transition duration-300 w-full"
+  >
+    Join
+  </button>
+)}
+
     </div>
   );
 };

@@ -120,7 +120,9 @@ const MyInitiatives = () => {
   };
 
   const handleMemberDetailsClick = (initiative) => {
+
     setMemberDetails(initiative);
+    
   };
 
   const handleCloseModal = () => {

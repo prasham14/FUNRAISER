@@ -65,7 +65,7 @@ function DocOfFunds({ setIsDocument }) {
           <ImCross size={15} />
         </button>
         {documents.length === 0 ? (
-          <p className="text-red-600">No documents available.</p>
+          <p className="text-red-600">Loading...</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="table-auto w-full bg-[#f2f1ed] shadow-md rounded-lg overflow-hidden">

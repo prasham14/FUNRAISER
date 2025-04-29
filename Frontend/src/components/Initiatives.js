@@ -12,10 +12,15 @@ import im5 from './images/pmjdyojna.jpeg'
 import im6 from './images/startupindia.jpeg'
 import SeeDetailsInitiative from './SeeDetailsInitiative';
 
-
+const Loader = () => (
+  <div className="flex justify-center items-center h-40">
+    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-black"></div>
+  </div>
+);
 const Initiatives = () => {
   const [initiatives, setInitiatives] = useState([]);
   const [active, setActive] = useState('');
+  const[isLoading,setIsLoading] = useState(false);
   const navigate = useNavigate();
   const initiativeId = localStorage.getItem('selectedinitiativeId');
   const token = localStorage.getItem('token');
@@ -46,13 +51,16 @@ const Initiatives = () => {
 
     const fetchFunds = async () => {
       try {
+        setIsLoading(true);
         const response = await axios.get('https://funraiser-pvio.vercel.app/init/getinitiatives', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
         setInitiatives(response.data);
+        setIsLoading(false);
       } catch (error) {
+        setIsLoading(false);
         console.error('Error fetching initiatives', error);
       }
     };
@@ -156,61 +164,63 @@ const Initiatives = () => {
         <h2 className="text-3xl font-extrabold text-[#aa4528] text-center mb-8">
           Initiatives Created by Users
         </h2>
-
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {initiatives.length > 0 ? (
-            initiatives.map((ini, index) => (
-              <li
-                key={index}
-                className="bg-white shadow-lg rounded-lg p-6 border border-gray-200 hover:shadow-xl transform transition-transform hover:-translate-y-1"
-              >
-                <h3 className="text-xl font-semibold text-black text-center hover:underline mb-4 hover:transition duration-300">
-                  {ini.title.length > 25 ? `${ini.title.slice(0, 25)}...` : (ini.title)};
-                </h3>
-                <div className="mb-3 flex justify-between">
-                  <p className="text-sm font-semibold text-gray-600">Date Created: {new Date(ini.date).toLocaleDateString()}</p>
-
-                  <p className="text-gray-800 font-semibold">Members Joined: {ini.members}</p>
-                </div>
-                <div className="mb-4">
-                  <p className="text-sm font-semibold text-gray-600">Purpose:</p>
-                  <p className="text-gray-800">{ini.purpose.length > 20 ? `${ini.purpose.slice(0, 20)}...` : (ini.purpose)}</p>
-                </div>
-
-                <div className="mb-4">
-                  <p className="text-sm font-semibold text-gray-600">Description:</p>
-                  <p className="text-gray-800">{ini.desc.length > 30 ? `${ini.desc.slice(0, 30)}...` : (ini.desc)}</p>
-                </div>
-
-                <h6 className="text-lg font-semibold text-gray-800 mb-3">Contact Details</h6>
-                <div className="mb-3">
-                  <p className="text-sm font-semibold text-gray-600 ">Email: {ini.email}</p>
-                </div>
-
-                <div className="mb-3">
-                  <p className="text-sm font-semibold text-gray-600">Phone: +91 {ini.phone}</p>
-                </div>
-
-
-
-                <button
-                  onClick={() => {
-                    localStorage.setItem('selectedinitiativeId', ini._id);
-                    localStorage.setItem('selectedinitiativeEmail', ini.email);
-                    setActive('seeDetails');
-                  }}
-                  className="bg-black text-white py-2 px-4 rounded-md hover:bg-[#aa4528] transition duration-300 w-full"
-                >
-                  See Details
-                </button>
-              </li>
-            ))
-          ) : (
-            <p className="text-gray-600 text-lg col-span-full text-center">
-              No initiatives found! An error occurred.
-            </p>
-          )}
-        </ul>
+            {
+              isLoading ? (<Loader/>):( <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {initiatives.length > 0 ? (
+                  initiatives.map((ini, index) => (
+                    <li
+                      key={index}
+                      className="bg-white shadow-lg rounded-lg p-6 border border-gray-200 hover:shadow-xl transform transition-transform hover:-translate-y-1"
+                    >
+                      <h3 className="text-xl font-semibold text-black text-center hover:underline mb-4 hover:transition duration-300">
+                        {ini.title.length > 25 ? `${ini.title.slice(0, 25)}...` : (ini.title)};
+                      </h3>
+                      <div className="mb-3 flex justify-between">
+                        <p className="text-sm font-semibold text-gray-600">Date Created: {new Date(ini.date).toLocaleDateString()}</p>
+      
+                        <p className="text-gray-800 font-semibold">Members Joined: {ini.members}</p>
+                      </div>
+                      <div className="mb-4">
+                        <p className="text-sm font-semibold text-gray-600">Purpose:</p>
+                        <p className="text-gray-800">{ini.purpose.length > 20 ? `${ini.purpose.slice(0, 20)}...` : (ini.purpose)}</p>
+                      </div>
+      
+                      <div className="mb-4">
+                        <p className="text-sm font-semibold text-gray-600">Description:</p>
+                        <p className="text-gray-800">{ini.desc.length > 30 ? `${ini.desc.slice(0, 30)}...` : (ini.desc)}</p>
+                      </div>
+      
+                      <h6 className="text-lg font-semibold text-gray-800 mb-3">Contact Details</h6>
+                      <div className="mb-3">
+                        <p className="text-sm font-semibold text-gray-600 ">Email: {ini.email}</p>
+                      </div>
+      
+                      <div className="mb-3">
+                        <p className="text-sm font-semibold text-gray-600">Phone: +91 {ini.phone}</p>
+                      </div>
+      
+      
+      
+                      <button
+                        onClick={() => {
+                          localStorage.setItem('selectedinitiativeId', ini._id);
+                          localStorage.setItem('selectedinitiativeEmail', ini.email);
+                          setActive('seeDetails');
+                        }}
+                        className="bg-black text-white py-2 px-4 rounded-md hover:bg-[#aa4528] transition duration-300 w-full"
+                      >
+                        See Details
+                      </button>
+                    </li>
+                  ))
+                ) : (
+                  <p className="text-gray-600 text-lg col-span-full text-center">
+                    No initiatives found!
+                  </p>
+                )}
+              </ul>)
+            }
+       
       </div>
 
       {/* Modal */}

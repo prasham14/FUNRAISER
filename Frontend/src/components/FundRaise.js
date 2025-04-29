@@ -9,6 +9,11 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
   import.meta.url,
 ).toString();
+const Loader = () => (
+  <div className="flex justify-center items-center h-40">
+    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-black"></div>
+  </div>
+);
 
 const FormSubmission = ({ setActivesection }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -122,7 +127,7 @@ const FormSubmission = ({ setActivesection }) => {
       style={{ maxHeight: "80vh" }}
     >
       {
-        isLoading ? (<Spinner />) : (
+        isLoading ? (<Loader />) : (
           <div>
             <div className="relative mb-6">
               <button
