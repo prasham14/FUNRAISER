@@ -7,20 +7,24 @@ const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
   const handlelogin = () => {
     navigate('/login');
   }
+
   const handleSignup = async (e) => {
     e.preventDefault();
-    // console.log('Request data:', { username, email, password });
+    setLoading(true);
+    setError(null);
+    
     try {
       const response = await axios.post('https://funraiser-pvio.vercel.app/signup', {
         username,
         email,
         password,
       });
-      // console.log('Response:', response);
       localStorage.setItem('token', response.data.token);
       navigate('/login');
     } catch (error) {
@@ -30,6 +34,8 @@ const Signup = () => {
       } else {
         setError("An error occurred. Please try again later.");
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -44,6 +50,7 @@ const Signup = () => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             className="w-full p-2 mb-4 border border-gray-300 rounded-md"
+            disabled={loading}
           />
           <input
             type="email"
@@ -51,6 +58,7 @@ const Signup = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="w-full p-2 mb-4 border border-gray-300 rounded-md"
+            disabled={loading}
           />
           <input
             type="password"
@@ -58,24 +66,77 @@ const Signup = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="w-full p-2 mb-4 border border-gray-300 rounded-md"
+            disabled={loading}
           />
           {error && <div className="text-red-500 text-center mb-2">{error}</div>}
           <button
             type="submit"
-            className="w-full bg-black text-white py-2 rounded-md transition duration-300 ease-in-out transform hover:scale-105"
+            className="w-full bg-black text-white py-2 rounded-md transition duration-300 ease-in-out transform hover:scale-105 relative"
+            disabled={loading}
           >
-            Signup
+            {loading ? (
+              <div className="flex items-center justify-center">
+                <div className="loader-container">
+                  <div className="pulse-loader">
+                    <div className="circle-1 bg-white"></div>
+                    <div className="circle-2 bg-white"></div>
+                    <div className="circle-3 bg-white"></div>
+                  </div>
+                </div>
+                <span className="ml-2">Signing up...</span>
+              </div>
+            ) : (
+              "Signup"
+            )}
           </button>
         </form>
         <p className="mt-4 text-center text-gray-600">Already Signed Up?</p>
         <button
           className="mt-2 w-full hover:underline hover:text-blue-500 focus:outline-none"
           onClick={handlelogin}
-        >Login Here
+          disabled={loading}
+        >
+          Login Here
         </button>
       </div>
-    </div>
 
+      <style jsx>{`
+        .loader-container {
+          display: inline-flex;
+          align-items: center;
+        }
+        .pulse-loader {
+          display: flex;
+          align-items: center;
+        }
+        .pulse-loader div {
+          width: 8px;
+          height: 8px;
+          margin: 0 2px;
+          border-radius: 50%;
+          animation: pulse 1.5s infinite ease-in-out;
+        }
+        .circle-1 {
+          animation-delay: 0s !important;
+        }
+        .circle-2 {
+          animation-delay: 0.2s !important;
+        }
+        .circle-3 {
+          animation-delay: 0.4s !important;
+        }
+        @keyframes pulse {
+          0%, 80%, 100% {
+            transform: scale(0.6);
+            opacity: 0.6;
+          }
+          40% {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+      `}</style>
+    </div>
   );
 };
 

@@ -46,7 +46,7 @@ const Initiatives = () => {
 
     const fetchFunds = async () => {
       try {
-        const response = await axios.get('https://funraiser-pvio.vercel.app/init/getinitiatives', {
+        const response = await axios.get('http://localhost:5001/init/getinitiatives', {
           headers: {
             Authorization: `Bearer ${token}`,
           },

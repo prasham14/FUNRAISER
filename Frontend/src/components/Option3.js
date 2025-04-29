@@ -6,6 +6,11 @@ import { VictoryPie } from 'victory';
 import ShowBankDetails from './ShowBankDetails';
 import PaymentComponent from './PaymentPage';
 import { toast } from 'react-toastify';
+const Loader = () => (
+  <div className="flex justify-center items-center h-40">
+    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-black"></div>
+  </div>
+);
 const Option3 = ({ setActivesection }) => {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -23,8 +28,11 @@ const Option3 = ({ setActivesection }) => {
           },
         });
         setFunds(response.data);
+        setIsLoading(false);
 
       } catch (error) {
+        setIsLoading(false);
+
         console.error('Error fetching education funds', error);
       }
     };
@@ -160,7 +168,7 @@ const Option3 = ({ setActivesection }) => {
           <div>{render()}</div>
         </div>
       ) : (
-        <div className='md:w-[55%] max-w-5xl h-fit max-h-[75%] rounded-md no-scrollbar  overflow-y-auto p-6 bg-[#f2f1ed]'>
+        isLoading ?(<Loader/>):(<div className='md:w-[55%] max-w-5xl h-fit max-h-[75%] rounded-md no-scrollbar  overflow-y-auto p-6 bg-[#f2f1ed]'>
           <div onClick={handleBack} className='w-10 h-10 z-30 flex justify-center items-center'>
             <button className=" text-black cursor-pointer p-5 ">
               <FaArrowLeft />
@@ -198,7 +206,8 @@ const Option3 = ({ setActivesection }) => {
               </p>
             )}
           </ul>
-        </div>
+        </div>)
+        
       )
       }
     </div >

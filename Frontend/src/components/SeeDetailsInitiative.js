@@ -121,11 +121,13 @@ const SeeDetailsInitiative = ({ setActive }) => {
       <button
         onClick={() => {
           localStorage.setItem('selectedinitiativeId', initiativeDetails._id);
-          isUser ? (handleIsUser()) : (setActive('join'))
+          setActive('join')
         }}
         className="bg-black text-white py-2 px-4 rounded-md hover:bg-[#aa4528] transition duration-300 w-full"
       >
-        Join
+        {
+        isUser ? (null):('Join')
+      }
       </button>
     </div>
   );
