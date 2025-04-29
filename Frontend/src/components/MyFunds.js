@@ -85,6 +85,7 @@ const MyFunds = () => {
         setFunds(response.data);
         setIsLoading(false);
       } catch (error) {
+        setIsLoading(false);
         console.error('Error fetching funds', error);
       }
     };
